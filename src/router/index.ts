@@ -8,8 +8,15 @@ import {
 import LayoutMain from '../components/layout/LayoutMain.vue'
 import Error from '../views/Error.vue'
 import Home from '../views/Home.vue'
+import Converter from '../views/Converter.vue'
 
 const mainRoutes: RouteRecordRaw[] = [
+  {
+    path: '/converter',
+    name: 'Converter',
+    props: true,
+    component: Converter,
+  },
   {
     path: '/',
     name: 'Home',

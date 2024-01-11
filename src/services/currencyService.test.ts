@@ -1,5 +1,4 @@
 import { vi, describe, it, expect, beforeAll } from 'vitest'
-import { formatCurrency } from './formatter'
 import { AxiosResponse } from 'axios'
 import RestClient from './restClient'
 import CurrencyService from './currencyService'

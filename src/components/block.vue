@@ -44,7 +44,7 @@ import { useCurrencyService } from '../services/currencyFactory'
 import { useToast } from '../composables/useToast'
 import { TOAST_TYPE } from '../types/toast'
 
-defineEmits(['close'])
+const emit = defineEmits(['close'])
 
 const isLoaded = ref(false)
 const currency1 = ref('EUR')
@@ -60,14 +60,19 @@ async function loadCurencies() {
   useToast().show('Loading curriencies')
   isLoaded.value = false
 
-  await Promise.all([
-    cService.loadCurrencies(),
-    cService.loadCurrencyExchange(currency1.value),
-    cService.loadCurrencyExchange(currency2.value),
-  ])
+  try {
+    await Promise.all([
+      cService.loadCurrencies(),
+      cService.loadCurrencyExchange(currency1.value),
+      cService.loadCurrencyExchange(currency2.value),
+    ])
 
-  useToast().show('Done loading curriencies', TOAST_TYPE.Success)
-  isLoaded.value = true
+    useToast().show('Done loading curriencies', TOAST_TYPE.Success)
+    isLoaded.value = true
+  } catch {
+    useToast().show('Failed loading curriences', TOAST_TYPE.Error)
+    emit('close')
+  }
 }
 
 watch([() => currency1.value, () => currency2.value], () => loadCurencies(), {

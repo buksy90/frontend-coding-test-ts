@@ -21,3 +21,7 @@ Details: https://mail.google.com/mail/u/0/#search/zammad/FMfcgzGwJchwktxnHnVNcrj
 
 1. I'm going to use currency API to create currency convertor
 https://github.com/fawazahmed0/currency-api?tab=readme-ov-file#readme
+
+2. Toasts
+- success shown when block is added and currencies loaded
+- error shown when API fails, can be simulated by changing api path in constants.ts

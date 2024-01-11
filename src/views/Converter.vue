@@ -11,7 +11,7 @@
     />
 
     <div
-      class="group inline-block text-primary hover:text-primary-hover mx-auto cursor-pointer"
+      class="group inline-block text-primary hover:text-primary-hover mx-auto cursor-pointer mt-5"
       v-on:click="addBlock"
     >
       <IconPlus class="group-hover:animate-bounce" />

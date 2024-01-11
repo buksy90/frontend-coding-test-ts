@@ -46,6 +46,11 @@ export default class CurrencyService {
     return this.exchanges.has(baseNormalized)
   }
 
+  public getCurrencyName(base: string) {
+    const baseNormalized = base.toLowerCase()
+    return this.currencies.get(baseNormalized)
+  }
+
   private addRate(base: string, rates: DTOCurrencyExchange): void {
     const baseNormalized = base.toLowerCase()
     this.exchanges.set(baseNormalized, rates[baseNormalized])

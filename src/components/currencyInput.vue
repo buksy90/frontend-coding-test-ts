@@ -20,6 +20,7 @@
       <div class="min-w-[20px]" />
       <div
         class="p-2 bg-primary hover:bg-primary-hover cursor-pointer text-white rounded-xl text-center text-xs"
+        v-bind:title="currencyService.getCurrencyName(currency)"
         v-on:click="modal.show"
       >
         {{ currency.toUpperCase() }}
@@ -37,6 +38,7 @@ import { computed, ref } from 'vue'
 import { formatCurrency } from '../services/formatter'
 import { sanitizeNumberInput } from '../services/helpers'
 import { useCurrencyModal } from '../composables/useCurrencyModal'
+import { useCurrencyService } from '../services/currencyFactory'
 
 const props = defineProps({
   currency: { type: String, required: true },
@@ -51,6 +53,7 @@ defineEmits<{
 const input = ref<HTMLInputElement>()
 
 const modal = useCurrencyModal()
+const currencyService = useCurrencyService()
 
 const formatted = computed(() => {
   return formatCurrency(props.value, props.currency)

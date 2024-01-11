@@ -22,7 +22,7 @@
 
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
       <div
-        class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+        class="flex min-h-full items-end justify-center text-center sm:items-center"
         v-on:click.self="$emit('close')"
       >
         <!--
@@ -40,7 +40,7 @@
         >
           <slot>No content</slot>
 
-          <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+          <div class="bg-gray-100 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
             <button
               type="button"
               class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"

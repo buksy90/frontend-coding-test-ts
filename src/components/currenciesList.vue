@@ -1,31 +1,36 @@
 <template>
-  <div class="px-4">
-    <h2 class="text-xl font-bold text-left my-4">Preferred</h2>
+  <div class="px-4 bg-gray-50 py-6">
+    <h2 class="text-xl font-bold text-left mb-6">Preferred</h2>
     <div class="grid grid-cols-4 gap-4 justify-between">
       <div
         v-for="key in preferredKeys"
         v-bind:key="key"
-        class="bg-white m-2 border border-gray-300 hover:border-primary-hover hover:text-primary-hover p-2 truncate cursor-pointer"
+        class="bg-gray-200 text-gray-500 font-semibold rounded-xl text-center uppercase text-xs border-gray-300 hover:bg-primary-100 hover:border-primary-hover hover:text-primary-hover p-2 truncate cursor-pointer"
+        v-bind:title="allCurrencies.get(key)"
         v-on:click="$emit('select', key)"
       >
-        {{ allCurrencies.get(key) || key }}
+        {{ key }}
       </div>
     </div>
 
-    <h2 class="text-xl font-bold text-left my-4">Others</h2>
-    <input
-      v-model="filter"
-      placeholder="Filter currencies"
-      class="p-2 mb-2 border border-gray-200 rounded-md"
-    />
-    <div class="grid grid-cols-4 gap-2 justify-between">
+    <div class="flex my-6 mt-9 op">
+      <h2 class="text-xl font-bold text-left">Others</h2>
+      <div class="flex-grow"></div>
+      <input
+        v-model="filter"
+        placeholder="Filter currencies"
+        class="border border-gray-200 rounded-md px-2 py-1 focus-visible:outline-primary focus-visible:text-primary"
+      />
+    </div>
+    <div class="grid grid-cols-4 gap-4 justify-between">
       <div
         v-for="key in nonPreferredKeys"
         v-bind:key="key"
-        class="bg-white m-2 border border-gray-300 hover:border-primary-hover hover:text-primary-hover p-2 truncate cursor-pointer"
+        class="bg-gray-200 text-gray-500 font-semibold rounded-xl text-center uppercase text-xs border-gray-300 hover:bg-primary-100 hover:border-primary-hover hover:text-primary-hover p-2 truncate cursor-pointer"
+        v-bind:title="allCurrencies.get(key)"
         v-on:click="$emit('select', key)"
       >
-        {{ allCurrencies.get(key) || key }}
+        {{ key }}
       </div>
     </div>
   </div>

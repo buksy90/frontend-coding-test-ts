@@ -3,6 +3,7 @@
     <div class="flex">
       <input
         ref="input"
+        class="w-[200px]"
         type="number"
         step="any"
         v-bind:disabled="disabled"
@@ -24,7 +25,7 @@
         {{ currency.toUpperCase() }}
       </div>
     </div>
-    <div class="text-left text-gray-400">
+    <div class="text-left text-gray-400 pt-1">
       {{ formatted }}
     </div>
     <modal.component v-on:select="(event) => $emit('update:currency', event)" />
@@ -62,5 +63,4 @@ const inputClasses = computed(() => ({
   'focus-visible:outline-0': true,
   'cursor-not-allowed': props.disabled,
 }))
-
 </script>

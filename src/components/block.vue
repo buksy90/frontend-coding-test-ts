@@ -53,6 +53,7 @@ const currency2 = ref('USD')
 async function loadCurencies() {
   const cService = useCurrencyService()
   if (cService.hasRate(currency1.value) && cService.hasRate(currency2.value)) {
+    isLoaded.value = true
     return
   }
 

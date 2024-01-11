@@ -2,6 +2,8 @@
   <div class="justify-center max-w-md my-10">
     <h1 class="font-extrabold tracking-tigh text-3xl leading-10">Converter</h1>
 
+    <toast.component />
+
     <Block
       v-for="block in blocksKeys"
       v-bind:key="block"
@@ -21,7 +23,9 @@
 import { reactive } from 'vue'
 import Block from '../components/block.vue'
 import IconPlus from '../components/icons/plus.vue'
+import { useToast } from '../composables/useToast'
 
+const toast = useToast()
 const blocksKeys = reactive(['block0'] as string[])
 
 let lastBlockNo = 1

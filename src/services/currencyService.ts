@@ -41,14 +41,14 @@ export default class CurrencyService {
     return CurrencyService.format(input / rate)
   }
 
+  public hasRate(base: string): boolean {
+    const baseNormalized = base.toLowerCase()
+    return this.exchanges.has(baseNormalized)
+  }
+
   private addRate(base: string, rates: DTOCurrencyExchange): void {
     const baseNormalized = base.toLowerCase()
     this.exchanges.set(baseNormalized, rates[baseNormalized])
-  }
-
-  private hasRate(base: string): boolean {
-    const baseNormalized = base.toLowerCase()
-    return this.exchanges.has(baseNormalized)
   }
 
   private getRate(base: string, target: string): number {

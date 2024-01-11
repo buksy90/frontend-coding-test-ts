@@ -41,6 +41,8 @@ import CurrencyInput from './currencyInput.vue'
 import IconExchange from './icons/exchange.vue'
 import IconClose from './icons/close.vue'
 import { useCurrencyService } from '../services/currencyFactory'
+import { useToast } from '../composables/useToast'
+import { TOAST_TYPE } from '../types/toast'
 
 defineEmits(['close'])
 
@@ -49,14 +51,21 @@ const currency1 = ref('EUR')
 const currency2 = ref('USD')
 
 async function loadCurencies() {
+  const cService = useCurrencyService()
+  if (cService.hasRate(currency1.value) && cService.hasRate(currency2.value)) {
+    return
+  }
+
+  useToast().show('Loading curriencies')
   isLoaded.value = false
 
   await Promise.all([
-    useCurrencyService().loadCurrencies(),
-    useCurrencyService().loadCurrencyExchange(currency1.value),
-    useCurrencyService().loadCurrencyExchange(currency2.value),
+    cService.loadCurrencies(),
+    cService.loadCurrencyExchange(currency1.value),
+    cService.loadCurrencyExchange(currency2.value),
   ])
 
+  useToast().show('Done loading curriencies', TOAST_TYPE.Success)
   isLoaded.value = true
 }
 
